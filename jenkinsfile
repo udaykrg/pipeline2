@@ -2,7 +2,7 @@ pipeline {
   agent none
   stages {
     stage ('build') {
-    agent { label 'master'}
+    parallel {
        steps {
           sh '''
                   echo "this is build stage"
@@ -11,7 +11,7 @@ pipeline {
              }
     }
     stage ('deploy') {
-    agent { label 'slave-02' }
+    agent { label "java" }
        steps {
           sh '''
                   echo "this is deploy stage"
@@ -20,7 +20,7 @@ pipeline {
              }
     }
     stage ('deploy') {
-     agent parallel
+     agent { label "master" }
        steps {
           sh '''
                   echo "this is deploy stage"
@@ -29,7 +29,7 @@ pipeline {
              }
     }
     stage ('test') {
-    agent master
+    agent { label "master" }
        steps {
           sh '''
                   echo "this is test stage"
