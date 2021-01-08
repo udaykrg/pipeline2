@@ -2,7 +2,7 @@ pipeline {
   agent none
   stages {
     stage ('build') {
-    agent any
+    agent master
         step {
           sh '''
                   echo "this is build stage"
@@ -20,7 +20,7 @@ pipeline {
              }
     }
     stage ('deploy') {
-     agent any
+     agent master
        steps {
           sh '''
                   echo "this is deploy stage"
@@ -29,7 +29,7 @@ pipeline {
              }
               }
     stage ('test') {
-    agent any
+    agent master
        steps {
           sh '''
                   echo "this is test stage"
