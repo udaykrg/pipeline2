@@ -2,7 +2,7 @@ pipeline {
   agent none
   stages {
     stage ('build') {
-    parallel {
+    agent parallel 
        steps {
           sh '''
                   echo "this is build stage"
